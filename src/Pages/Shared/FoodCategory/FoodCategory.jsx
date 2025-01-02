@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import MenuItemCard from "../../Shared/MenuItemCard/MenuItemCard";
-import SectionTitle from "../../Shared/SectionTitle/SectionTitle";
 
 const FoodCategory = ({ category}) => {
     const [menu, setMenu] = useState([]);
