@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import MenuItemCard from "../../Shared/MenuItemCard/MenuItemCard";
+import { Link } from "react-router-dom";
 
-const FoodCategory = ({ category}) => {
+const FoodCategory = ({ category }) => {
     const [menu, setMenu] = useState([]);
 
     useEffect(() => {
-        fetch('menu.json')
+        fetch('http://localhost:5000/menu')
             .then(res => res.json())
             .then(data => {
                 const popularItems = data.filter(item => item.category === category)
@@ -25,7 +26,7 @@ const FoodCategory = ({ category}) => {
                 }
             </div>
             <div className="text-center mt-6 mb-16">
-                <button className="btn btn-outline uppercase border-0 border-b-4">ORDER YOUR FAVORITE FOOD</button>
+                <Link to={`/shop/${category}`} className="btn btn-outline uppercase border-0 border-b-4">ORDER YOUR FAVORITE FOOD</Link>
             </div>
         </section>
     );

@@ -5,11 +5,14 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import useMenu from "../../../Hook/useMenu";
 import { useState } from "react";
-import OurShopCart from "./OurShopCart";
 import OrderTab from "./orderTab";
+import { useParams } from "react-router-dom";
 
 const OurShop = () => {
-    const [tabIndex, setTabIndex] = useState(0);
+    const categories = ['salad', 'pizza', 'soup', 'dessert', 'drinks'];
+    const { category } = useParams();
+    const initialIndex = categories.indexOf(category);
+    const [tabIndex, setTabIndex] = useState(initialIndex);
     const [menu] = useMenu();
 
     const desserts = menu.filter(item => item.category === 'dessert');
