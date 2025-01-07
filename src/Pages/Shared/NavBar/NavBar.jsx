@@ -1,9 +1,19 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import './NavBar.css'
+import { FaUserCircle } from "react-icons/fa";
+import { useContext } from "react";
+import { AuthContext } from "../../../Provider/AuthProvider";
+import { FaShoppingCart } from "react-icons/fa";
+import useCart from "../../../Hook/useCart";
+
+
 
 const NavBar = () => {
+    const { user, logOutUser } = useContext(AuthContext);
+    const [carts]= useCart();
+
     const links = (
-        <div className="space-y-2 lg:space-x-3 lg:space-y-0">
+        <div className="space-y-2 lg:space-x-3 lg:space-y-0 uppercase">
             <NavLink to="/" className="block lg:inline">HOME</NavLink>
             <NavLink to="/contact" className="block lg:inline">CONTACT US</NavLink>
             <NavLink to="/dashboard" className="block lg:inline">DASHBOARD</NavLink>
@@ -11,6 +21,25 @@ const NavBar = () => {
             <NavLink to="/shop/salad" className="block lg:inline">OUR SHOP</NavLink>
         </div>
     );
+
+    const authLinks = (
+        <div className="space-y-2 lg:space-x-3 lg:space-y-0 uppercase">
+            <Link to='/dashboard/cart' className="btn btn-ghost">
+                <FaShoppingCart />
+                <div className="badge badge-secondary">{carts.length}</div>
+            </Link>
+            {
+                user ?
+                    <>
+                        <button onClick={logOutUser} className="block lg:inline">Logout</button>
+                    </> :
+                    <>
+                        <NavLink to="/login" className="block lg:inline">Login</NavLink>
+                        <NavLink to="/signUp" className="block lg:inline">Sign Up</NavLink>
+                    </>
+            }
+        </div>
+    )
 
     return (
         <div className="navbar fixed z-10 bg-black text-white bg-opacity-30 max-w-screen-xl">
@@ -34,6 +63,7 @@ const NavBar = () => {
                         tabIndex={0}
                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow text-black">
                         {links}
+                        {authLinks}
                     </ul>
                 </div>
                 <a href="/" className="btn btn-ghost text-xl">BISTRO BOSS</a>
@@ -43,10 +73,22 @@ const NavBar = () => {
                     {links}
                 </ul>
             </div>
-
             <div className="navbar-end">
-                <a className="btn">Button</a>
+                <div className="text-sm hidden lg:flex">
+                    {authLinks}
+                </div>
+                {user ? (
+                    <img
+                        className="w-12 h-12 mx-6 rounded-full"
+                        src={user.photoURL}
+                        alt=""
+                        title={user.displayName || "User"}
+                    />
+                ) : (
+                    <FaUserCircle className="text-4xl mx-6" title="Guest User" />
+                )}
             </div>
+
         </div>
     );
 };
