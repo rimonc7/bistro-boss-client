@@ -6,11 +6,14 @@ import { useContext } from 'react';
 import { AuthContext } from '../../../Provider/AuthProvider';
 import { updateProfile } from 'firebase/auth';
 import Swal from 'sweetalert2';
+import useAxiosPublic from '../../../Hook/useAxiosPublic';
+import SocialLogin from '../../Shared/SocialLogin/SocialLogin';
 
 const Signup = () => {
 
     const { createUserWithEmail, errorMessage, setErrorMessage } = useContext(AuthContext);
     const navigate = useNavigate();
+    const axiosPublic = useAxiosPublic();
 
     const handleCreateUser = e => {
         e.preventDefault();
@@ -34,20 +37,31 @@ const Signup = () => {
                 return updateProfile(user, {
                     displayName: name,
                     photoURL: photo
-                })
+                }).then(() => user); // Pass the user to the next then block
             })
-            .then(() => {
-                Swal.fire({
-                    title: "Register Success",
-                    icon: "success",
-                    draggable: true
-                  });
-                form.reset()
-                navigate('/')
+            .then((user) => { // Use user from the previous then block
+                const userInfo = {
+                    name: user.displayName,
+                    email: user.email,
+                    photo: user.photoURL
+                };
+                axiosPublic.post('/users', userInfo)
+                    .then(res => {
+                        if (res.data.insertedId) {
+                            Swal.fire({
+                                title: "Register Success",
+                                icon: "success",
+                                draggable: true
+                            });
+                            form.reset();
+                            navigate('/');
+                        }
+                    })
             })
             .catch(error => {
-                setErrorMessage(error.message)
-            })
+                setErrorMessage(error.message);
+            });
+
     }
 
     return (
@@ -134,17 +148,7 @@ const Signup = () => {
                         </Link>
                     </p>
                     {/* Social Media Signup */}
-                    <div className="flex justify-center space-x-4 mt-6">
-                        <button className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center shadow-md">
-                            <FaFacebookF className="text-blue-600" size={20} />
-                        </button>
-                        <button className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center shadow-md">
-                            <FaGoogle className="text-red-500" size={20} />
-                        </button>
-                        <button className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center shadow-md">
-                            <FaTwitter className="text-blue-400" size={20} />
-                        </button>
-                    </div>
+                    <SocialLogin></SocialLogin>
                     {errorMessage && (
                         <div className="mt-4 text-center">
                             <p className="text-red-500">{errorMessage}</p>
