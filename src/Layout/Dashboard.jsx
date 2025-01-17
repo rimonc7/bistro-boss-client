@@ -1,5 +1,5 @@
 import { NavLink, Outlet } from "react-router-dom";
-import { FaHome, FaUtensils, FaListAlt, FaUserFriends, FaShoppingCart, FaEnvelope, FaShoppingBag } from "react-icons/fa";
+import { FaHome, FaUtensils, FaListAlt, FaUserFriends, FaShoppingCart, FaEnvelope, FaShoppingBag, FaCalendarAlt, FaHistory, FaStar, FaBookOpen } from "react-icons/fa";
 import useAdmin from "../Hook/useAdmin";
 const Dashboard = () => {
     const [isAdmin] = useAdmin();
@@ -18,7 +18,7 @@ const Dashboard = () => {
                             {/* Admin Navigation */}
                             <ul className="space-y-6 text-black">
                                 <li>
-                                    <NavLink to="/dashboard" className="flex items-center space-x-2 hover:text-black">
+                                    <NavLink to="/dashboard/admin-home" className="flex items-center space-x-2 hover:text-black">
                                         <FaHome />
                                         <span>Admin Home</span>
                                     </NavLink>
@@ -47,25 +47,12 @@ const Dashboard = () => {
                                         <span>All Users</span>
                                     </NavLink>
                                 </li>
-                            </ul>
-                        </>
-                        :
-                        <>
-                            {/* Divider */}
-                            {/* <hr className="my-6 border-t border-white" /> */}
-
-                            {/* User Navigation */}
-                            <ul className="space-y-6 text-black">
+                                {/* Divider */}
+                                <hr className="my-6 border-t border-white" />
                                 <li>
                                     <NavLink to="/" className="flex items-center space-x-2 hover:text-black">
                                         <FaHome />
                                         <span>Home</span>
-                                    </NavLink>
-                                </li>
-                                <li>
-                                    <NavLink to="/dashboard/cart" className="flex items-center space-x-2 hover:text-black">
-                                        <FaHome />
-                                        <span>My Cart</span>
                                     </NavLink>
                                 </li>
                                 <li>
@@ -80,6 +67,95 @@ const Dashboard = () => {
                                         <span>Shop</span>
                                     </NavLink>
                                 </li>
+                                <li>
+                                    <NavLink to="/contact" className="flex items-center space-x-2 hover:text-black">
+                                        <FaEnvelope />
+                                        <span>Contact</span>
+                                    </NavLink>
+                                </li>
+                            </ul>
+                        </>
+                        :
+                        <>
+
+                            {/* User Navigation */}
+                            <ul className="space-y-6 text-black">
+                                {/* User Home */}
+                                <li>
+                                    <NavLink to="/dashboard/user-home" className="flex items-center space-x-2 hover:text-black">
+                                        <FaHome />
+                                        <span>User Home</span>
+                                    </NavLink>
+                                </li>
+
+                                {/* Reservation */}
+                                <li>
+                                    <NavLink to="/dashboard/reservation" className="flex items-center space-x-2 hover:text-black">
+                                        <FaCalendarAlt />
+                                        <span>Reservation</span>
+                                    </NavLink>
+                                </li>
+
+                                {/* Payment History */}
+                                <li>
+                                    <NavLink to="/dashboard/payment-history" className="flex items-center space-x-2 hover:text-black">
+                                        <FaHistory />
+                                        <span>Payment History</span>
+                                    </NavLink>
+                                </li>
+
+                                {/* My Cart */}
+                                <li>
+                                    <NavLink to="/dashboard/cart" className="flex items-center space-x-2 hover:text-black">
+                                        <FaShoppingCart />
+                                        <span>My Cart</span>
+                                    </NavLink>
+                                </li>
+
+                                {/* Add Review */}
+                                <li>
+                                    <NavLink to="/dashboard/add-review" className="flex items-center space-x-2 hover:text-black">
+                                        <FaStar />
+                                        <span>Add Review</span>
+                                    </NavLink>
+                                </li>
+
+                                {/* My Booking */}
+                                <li>
+                                    <NavLink to="/dashboard/my-booking" className="flex items-center space-x-2 hover:text-black">
+                                        <FaBookOpen />
+                                        <span>My Booking</span>
+                                    </NavLink>
+                                </li>
+
+                                {/* Divider */}
+                                <hr className="my-6 border-t border-white" />
+
+                                {/* Home */}
+                                <li>
+                                    <NavLink to="/" className="flex items-center space-x-2 hover:text-black">
+                                        <FaHome />
+                                        <span>Home</span>
+                                    </NavLink>
+                                </li>
+
+                                {/* Menu */}
+                                <li>
+                                    <NavLink to="/menu" className="flex items-center space-x-2 hover:text-black">
+                                        <FaUtensils />
+                                        <span>Menu</span>
+                                    </NavLink>
+                                </li>
+
+                                {/* Shop */}
+                                <li>
+                                    <NavLink to="/shop/salad" className="flex items-center space-x-2 hover:text-black">
+                                        <FaShoppingBag />
+                                        <span>Shop</span>
+                                    </NavLink>
+                                </li>
+
+                                {/* Contact */}
                                 <li>
                                     <NavLink to="/contact" className="flex items-center space-x-2 hover:text-black">
                                         <FaEnvelope />
