@@ -4,12 +4,12 @@
 
 ## Description
 
-**Bistro Boss** is an interactive and responsive restaurant website built with React, Vite, and Firebase. It features a modern and user-friendly design to enhance the customer experience. The site includes a dynamic menu, reservation system, contact form, and a real-time update feature. The project is fully responsive, ensuring an optimal experience on both desktop and mobile devices.
+**Bistro Boss** is an interactive and responsive restaurant website built with React, Vite, MongoDB, Node.js, and Express.js. It features a modern and user-friendly design to enhance the customer experience. The site includes a dynamic menu, reservation system, contact form, and a real-time update feature. The project is fully responsive, ensuring an optimal experience on both desktop and mobile devices.
 
 ## Features
 
 - **Online Menu**: Display categorized list of dishes and drinks.
-- **User Authentication**: Users can log in and sign up securely via Firebase.
+- **User Authentication**: Users can log in and sign up securely.
 - **Reservations**: Customers can book tables for specific times and receive instant updates.
 - **Responsive Design**: The website adapts to mobile, tablet, and desktop screens.
 - **Payment Integration**: Secure online payments powered by Stripe.
@@ -32,7 +32,9 @@
 
 ### Backend:
 
-- **Firebase** – Real-time database, authentication, and hosting.
+- **Node.js** – JavaScript runtime for building server-side applications.
+- **Express.js** – A minimal web framework for Node.js.
+- **MongoDB** – NoSQL database for storing data such as menus, reservations, and contact info.
 - **Stripe** – Payment processing for online orders.
 
 ### Development Tools:
