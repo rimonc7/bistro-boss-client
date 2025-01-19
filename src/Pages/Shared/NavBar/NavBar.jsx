@@ -5,18 +5,27 @@ import { useContext } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import { FaShoppingCart } from "react-icons/fa";
 import useCart from "../../../Hook/useCart";
+import useAdmin from "../../../Hook/useAdmin";
 
 
 
 const NavBar = () => {
     const { user, logOutUser } = useContext(AuthContext);
-    const [carts]= useCart();
+    const [carts] = useCart();
+    const [isAdmin] = useAdmin();
 
     const links = (
         <div className="space-y-2 lg:space-x-3 lg:space-y-0 uppercase">
             <NavLink to="/" className="block lg:inline">HOME</NavLink>
             <NavLink to="/contact" className="block lg:inline">CONTACT US</NavLink>
-            <NavLink to="/dashboard" className="block lg:inline">DASHBOARD</NavLink>
+            {
+                user && isAdmin && <NavLink to="/dashboard/adminHome" className="block lg:inline">DASHBOARD</NavLink>
+
+            }
+            {
+                user && !isAdmin && <NavLink to="/dashboard/userHome" className="block lg:inline">DASHBOARD</NavLink>
+
+            }
             <NavLink to="/menu" className="block lg:inline">OUR MENU</NavLink>
             <NavLink to="/shop/salad" className="block lg:inline">OUR SHOP</NavLink>
         </div>

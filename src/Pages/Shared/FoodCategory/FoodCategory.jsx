@@ -6,7 +6,7 @@ const FoodCategory = ({ category }) => {
     const [menu, setMenu] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/menu')
+        fetch('https://bistro-boss-server-woad-two.vercel.app/menu')
             .then(res => res.json())
             .then(data => {
                 const popularItems = data.filter(item => item.category === category)

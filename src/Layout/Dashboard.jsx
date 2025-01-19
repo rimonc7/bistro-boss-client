@@ -18,7 +18,7 @@ const Dashboard = () => {
                             {/* Admin Navigation */}
                             <ul className="space-y-6 text-black">
                                 <li>
-                                    <NavLink to="/dashboard/admin-home" className="flex items-center space-x-2 hover:text-black">
+                                    <NavLink to="/dashboard/adminHome" className="flex items-center space-x-2 hover:text-black">
                                         <FaHome />
                                         <span>Admin Home</span>
                                     </NavLink>
@@ -82,7 +82,7 @@ const Dashboard = () => {
                             <ul className="space-y-6 text-black">
                                 {/* User Home */}
                                 <li>
-                                    <NavLink to="/dashboard/user-home" className="flex items-center space-x-2 hover:text-black">
+                                    <NavLink to="/dashboard/userHome" className="flex items-center space-x-2 hover:text-black">
                                         <FaHome />
                                         <span>User Home</span>
                                     </NavLink>
